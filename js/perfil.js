@@ -40,8 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const certBtns = document.querySelectorAll('.cert-btn');
 
     const certMap = {
-        dam: '../img/CertificadoDAM.jpeg',
-        csic: '../img/CertificadoCSIC.jpeg'
+        dam: 'img/CertificadoDAM.jpeg',
+        csic: 'img/CertificadoCSIC.jpeg'
     };
 
     certBtns.forEach(btn => {
