@@ -313,4 +313,12 @@ h1 {
     .cert-grid {
         justify-content: center;
     }
+
+    .hero-right {
+        gap: 15px;
+    }
+
+    .hero-section {
+        margin-bottom: 15px;
+    }
 }
