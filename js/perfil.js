@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cvBtn) {
         cvBtn.addEventListener('click', () => {
             const link = document.createElement('a');
-            link.href = '../img/cv.pdf';
+            link.href = 'img/cv.pdf';
             link.download = 'Miguel_Angel_Pascual_Lopez_CV.pdf';
             document.body.appendChild(link);
             link.click();

@@ -1,4 +1,3 @@
-/* ========== HERO ========== */
 .tech-hero {
     margin-bottom: 40px;
     animation: fadeIn 1s ease;
@@ -17,7 +16,6 @@
     opacity: 0.8;
 }
 
-/* ========== TECH LIST ========== */
 .tech-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -86,7 +84,6 @@
     line-height: 1.5;
 }
 
-/* ========== TECH BAR ========== */
 .tech-bar {
     width: 100%;
     height: 10px;
@@ -150,13 +147,11 @@
     100% { transform: scaleX(1.03); }
 }
 
-/* ========== ANIMATIONS ========== */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
     .tech-hero h1 {
         font-size: 1.8rem;

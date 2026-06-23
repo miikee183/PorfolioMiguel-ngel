@@ -13,7 +13,6 @@ body {
     flex-direction: column;
 }
 
-/* ========== TOP NAVBAR ========== */
 .navbar-top {
     background-color: #000;
     border-bottom: 1px solid #00ff41;
@@ -55,7 +54,6 @@ body {
     color: #000;
 }
 
-/* ========== MAIN CONTENT ========== */
 .main-content {
     flex: 1;
     padding: 40px 20px;
@@ -64,7 +62,6 @@ body {
     width: 100%;
 }
 
-/* ========== BOTTOM BAR ========== */
 .navbar-bottom {
     background-color: #000;
     border-top: 1px solid #00ff41;
@@ -144,7 +141,6 @@ body {
     text-shadow: 0 0 8px #00ff41;
 }
 
-/* ========== TECH MARQUEE ========== */
 .tech-marquee {
     width: 100%;
     overflow: hidden;
@@ -184,7 +180,6 @@ body {
     100% { transform: translateX(-50%); }
 }
 
-/* ========== SCROLLBAR ========== */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -204,13 +199,11 @@ body {
     box-shadow: 0 0 8px #00ff41;
 }
 
-/* Firefox */
 * {
     scrollbar-width: thin;
     scrollbar-color: #00ff41 #000;
 }
 
-/* ========== FONDO DINÁMICO ========== */
 body::before {
     content: '';
     position: fixed;
