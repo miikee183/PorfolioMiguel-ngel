@@ -1,0 +1,130 @@
+/* ========== HERO ========== */
+.proy-hero {
+    margin-bottom: 40px;
+    animation: fadeIn 1s ease;
+}
+
+.proy-hero h1 {
+    color: #00ff41;
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+.proy-hero .subtitle {
+    color: #00ff41;
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+/* ========== PROJECT CARDS ========== */
+.proy-card {
+    background: #0a0a0a;
+    border: 1px solid #00ff41;
+    padding: 25px;
+    margin-bottom: 35px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    animation: fadeIn 1s ease;
+}
+
+.proy-card:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.15);
+    transform: scale(1.01);
+}
+
+.proy-header {
+    margin-bottom: 18px;
+}
+
+.proy-header h2 {
+    color: #00ff41;
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+}
+
+.proy-sub {
+    color: #00ff41;
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.proy-divider {
+    border-bottom: 1px solid #00ff41;
+    margin: 18px 0;
+    opacity: 0.3;
+}
+
+.proy-body h3 {
+    color: #00ff41;
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.proy-body h3:first-child {
+    margin-top: 0;
+}
+
+.proy-body p {
+    color: #fff;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 14px;
+}
+
+.proy-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+    padding-top: 15px;
+    border-top: 1px solid #00ff41;
+    border-top-color: rgba(0, 255, 65, 0.2);
+}
+
+.proy-tags span {
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    padding: 3px 12px;
+    font-size: 0.8rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.proy-code-block {
+    background: #000;
+    border: 1px solid #00ff41;
+    padding: 14px 18px;
+    margin: 14px 0;
+    color: #00ff41;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+.proy-note {
+    color: #fff;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    font-style: italic;
+    margin-top: 10px;
+    padding: 10px 14px;
+    border-left: 2px solid #00ff41;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .proy-hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .proy-body h3 {
+        font-size: 1rem;
+    }
+}

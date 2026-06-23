@@ -68,13 +68,19 @@ body {
 .navbar-bottom {
     background-color: #000;
     border-top: 1px solid #00ff41;
-    padding: 15px 20px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+}
+
+.navbar-bottom .bottom-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 12px 20px;
     flex-wrap: wrap;
     gap: 10px;
-    font-size: 0.85rem;
 }
 
 .navbar-bottom .copy {
@@ -93,4 +99,134 @@ body {
 .navbar-bottom .social-links a:hover {
     background: #00ff41;
     color: #000;
+}
+
+.navbar-bottom .contact-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.navbar-bottom .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #00ff41;
+}
+
+.navbar-bottom .contact-item .icon-line {
+    flex-shrink: 0;
+}
+
+.navbar-bottom .contact-sep {
+    color: #00ff41;
+    opacity: 0.4;
+}
+
+.navbar-bottom .social-foot {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.navbar-bottom .social-foot a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #00ff41;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.navbar-bottom .social-foot a:hover {
+    text-shadow: 0 0 8px #00ff41;
+}
+
+/* ========== TECH MARQUEE ========== */
+.tech-marquee {
+    width: 100%;
+    overflow: hidden;
+    border-bottom: 1px solid #00ff41;
+    padding: 8px 0;
+}
+
+.tech-marquee .marquee-track {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    animation: marqueeScroll 30s linear infinite;
+}
+
+.tech-marquee .marquee-track span {
+    color: #00ff41;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    padding: 0 30px;
+    position: relative;
+}
+
+.tech-marquee .marquee-track span::after {
+    content: '•';
+    color: #00ff41;
+    position: absolute;
+    right: -3px;
+}
+
+.tech-marquee .marquee-track span:last-child::after {
+    display: none;
+}
+
+@keyframes marqueeScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ========== SCROLLBAR ========== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+    border-left: 1px solid #00ff41;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00ff41;
+    border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00cc33;
+    box-shadow: 0 0 8px #00ff41;
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #00ff41 #000;
+}
+
+/* ========== FONDO DINÁMICO ========== */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(600px at var(--mx, 50%) var(--my, 50%), rgba(0, 255, 65, 0.08), rgba(144, 238, 144, 0.04), transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 200px 100% at left center, rgba(0, 255, 65, 0.12), transparent 70%),
+        radial-gradient(ellipse 200px 100% at right center, rgba(0, 255, 65, 0.12), transparent 70%);
+    pointer-events: none;
+    z-index: -1;
 }
