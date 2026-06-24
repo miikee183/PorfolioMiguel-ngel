@@ -1,3 +1,5 @@
+# api de comentarios con autenticacion google
+
 import os
 import sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
@@ -21,9 +23,11 @@ app = FastAPI(title="Portfolio Feedback API")
 
 @app.get("/")
 def root():
+    # endpoint de salud para comprobar que la api funciona
     return {"status": "ok", "message": "Portfolio Feedback API running"}
 
 
+# permite peticiones desde cualquier origen
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -34,12 +38,13 @@ app.add_middleware(
 
 
 def get_current_user(db: Session, token: str):
+    # verifica el token con google y crea el usuario si no existe
     resp = http_requests.get(
         "https://www.googleapis.com/oauth2/v3/userinfo",
         headers={"Authorization": f"Bearer {token}"},
     )
     if resp.status_code != 200:
-        raise HTTPException(status_code=401, detail="Token inválido")
+        raise HTTPException(status_code=401, detail="Token invalido")
 
     info = resp.json()
     user = db.query(User).filter(User.google_id == info["sub"]).first()
@@ -57,6 +62,7 @@ def get_current_user(db: Session, token: str):
 
 
 def build_comment_out(comment: Comment, user_id: int = None):
+    # construye la respuesta de un comentario con datos del autor
     user_liked = False
     if user_id:
         user_liked = any(like.user_id == user_id for like in comment.like_entries)
@@ -74,12 +80,14 @@ def build_comment_out(comment: Comment, user_id: int = None):
 
 @app.post("/api/auth/google")
 def google_auth(data: GoogleAuth, db: Session = Depends(get_db)):
+    # inicia sesion con token de google
     user = get_current_user(db, data.id_token)
     return {"user": UserOut.model_validate(user), "token": data.id_token}
 
 
 @app.get("/api/comments")
 def get_comments(sort: str = "recent", token: str = Header(None), db: Session = Depends(get_db)):
+    # devuelve comentarios ordenados por reciente o por likes
     query = db.query(Comment).filter(Comment.parent_id == None)
 
     if sort == "top":
@@ -101,6 +109,7 @@ def get_comments(sort: str = "recent", token: str = Header(None), db: Session = 
 
 @app.post("/api/comments")
 def create_comment(data: CommentCreate, token: str = Header(...), db: Session = Depends(get_db)):
+    # crea un comentario o respuesta
     user = get_current_user(db, token)
 
     if data.parent_id:
@@ -122,6 +131,7 @@ def create_comment(data: CommentCreate, token: str = Header(...), db: Session = 
 
 @app.get("/api/comments/{comment_id}/replies")
 def get_replies(comment_id: int, token: str = Header(None), db: Session = Depends(get_db)):
+    # devuelve las respuestas de un comentario
     comment = db.query(Comment).filter(Comment.id == comment_id).first()
     if not comment:
         raise HTTPException(status_code=404, detail="Comentario no encontrado")
@@ -140,6 +150,7 @@ def get_replies(comment_id: int, token: str = Header(None), db: Session = Depend
 
 @app.post("/api/comments/{comment_id}/like")
 def toggle_like(comment_id: int, token: str = Header(...), db: Session = Depends(get_db)):
+    # activa o desactiva un like en un comentario
     user = get_current_user(db, token)
     comment = db.query(Comment).filter(Comment.id == comment_id).first()
     if not comment:
@@ -161,5 +172,6 @@ def toggle_like(comment_id: int, token: str = Header(...), db: Session = Depends
 
 
 if __name__ == "__main__":
+    # ejecuta el servidor en modo local
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)

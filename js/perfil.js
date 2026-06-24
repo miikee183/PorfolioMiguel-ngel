@@ -1,4 +1,4 @@
-// Fondo dinámico que sigue al ratón
+// actualiza la posicion del cursor para el efecto de fondo
 document.addEventListener('mousemove', (e) => {
     const x = (e.clientX / window.innerWidth) * 100;
     const y = (e.clientY / window.innerHeight) * 100;
@@ -8,7 +8,7 @@ document.addEventListener('mousemove', (e) => {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Efecto máquina de escribir en el greeting
+    // efecto maquina de escribir en el saludo
     const greeting = document.querySelector('.greeting');
     if (greeting) {
         const originalText = greeting.textContent;
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 50);
     }
 
-    // Resaltar botón activo en navbar
+    // resalta el boton activo de la barra de navegacion
     const navBtns = document.querySelectorAll('.nav-btn');
     navBtns.forEach(btn => {
         btn.addEventListener('click', function () {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Modal de certificados
+    // modal para visualizar certificados
     const modal = document.getElementById('certModal');
     const certImage = document.getElementById('certImage');
     const closeBtn = document.querySelector('.modal-close');
@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // cierra el modal de certificados
     const closeModal = () => modal.classList.remove('show');
 
     closeBtn.addEventListener('click', closeModal);
@@ -62,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') closeModal();
     });
 
-    // Descargar CV
+    // descarga del curriculum vitae en pdf
     const cvBtn = document.getElementById('downloadCv');
     if (cvBtn) {
         cvBtn.addEventListener('click', () => {

@@ -1,3 +1,5 @@
+// gestion de comentarios, likes y autenticacion
+
 const API_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
     ? "http://localhost:8000"
     : "https://portfolio-feedback-api-t8q4.onrender.com";
@@ -6,9 +8,12 @@ const GOOGLE_CLIENT_ID = "201681609523-3fc81n4vsdlqhtttd0ij83vgf038ghmb.apps.goo
 let currentUser = null;
 let currentToken = null;
 
+// funcion auxiliar para obtener elementos por id
+
 function $(id) { return document.getElementById(id); }
 
 $("googleSignInBtn").addEventListener("click", () => {
+    // abre el popup de google para iniciar sesion
     if (typeof google === "undefined" || !google.accounts) {
         alert("Google Sign-In no se ha cargado. Recarga la página.");
         return;
@@ -41,6 +46,7 @@ $("googleSignInBtn").addEventListener("click", () => {
 });
 
 async function loadComments(sort) {
+    // carga los comentarios desde el backend
     const container = $("commentsContainer");
     container.innerHTML = '<p class="fb-loading">Cargando comentarios...</p>';
 
@@ -64,6 +70,7 @@ async function loadComments(sort) {
 }
 
 function renderComment(c, isReply = false) {
+    // crea el html de un comentario
     const div = document.createElement("div");
     div.className = `fb-comment${isReply ? " is-reply" : ""}`;
     div.dataset.id = c.id;
@@ -108,12 +115,14 @@ function renderComment(c, isReply = false) {
 }
 
 function escHtml(str) {
+    // escapa caracteres html para evitar inyeccion
     const d = document.createElement("div");
     d.textContent = str;
     return d.innerHTML;
 }
 
 async function toggleLike(commentId, btn) {
+    // envia un like o lo quita
     if (!currentToken) {
         alert("Inicia sesión con Google para dar like");
         return;
@@ -135,14 +144,17 @@ async function toggleLike(commentId, btn) {
 }
 
 function showReplyForm(commentId) {
+    // muestra el formulario de respuesta
     $(`replyForm-${commentId}`).classList.add("show");
 }
 
 function hideReplyForm(commentId) {
+    // oculta el formulario de respuesta
     $(`replyForm-${commentId}`).classList.remove("show");
 }
 
 async function submitReply(commentId) {
+    // envia una respuesta a un comentario
     if (!currentToken) {
         alert("Inicia sesión con Google para responder");
         return;
@@ -179,6 +191,7 @@ async function submitReply(commentId) {
 }
 
 async function toggleReplies(commentId, btn) {
+    // muestra u oculta las respuestas de un comentario
     const container = $(`replies-${commentId}`);
     if (container.classList.contains("show")) {
         container.classList.remove("show");
@@ -203,6 +216,7 @@ async function toggleReplies(commentId, btn) {
 }
 
 function handleCredentialResponse(response) {
+    // autenticacion alternativa con credencial directa de google
     fetch(`${API_BASE}/api/auth/google`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -223,7 +237,9 @@ function handleCredentialResponse(response) {
 
 let cooldown = false;
 
+// impide enviar multiples comentarios seguidos
 $("submitComment").addEventListener("click", async () => {
+    // publica un comentario con cooldown de 3 segundos
     if (!currentToken) {
         alert("Inicia sesión primero");
         return;
@@ -258,10 +274,12 @@ $("submitComment").addEventListener("click", async () => {
     }, 3000);
 });
 
+// vacia el campo de texto del comentario
 $("cancelComment").addEventListener("click", () => {
     $("newCommentText").value = "";
 });
 
+// cambia el filtro de comentarios entre reciente y mejor valorado
 document.querySelectorAll(".fb-filter-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
         document.querySelectorAll(".fb-filter-btn").forEach((b) => b.classList.remove("active"));
@@ -270,4 +288,5 @@ document.querySelectorAll(".fb-filter-btn").forEach((btn) => {
     });
 });
 
+// carga los comentarios al iniciar la pagina
 loadComments("recent");

@@ -1,3 +1,5 @@
+# modelos de usuario, comentario y like
+
 from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship
 from datetime import datetime
@@ -5,6 +7,7 @@ from backend.database import Base
 
 
 class User(Base):
+    # usuario autenticado con google
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -18,6 +21,7 @@ class User(Base):
 
 
 class Comment(Base):
+    # comentario o respuesta a otro comentario
     __tablename__ = "comments"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -34,6 +38,7 @@ class Comment(Base):
 
 
 class Like(Base):
+    # registro de like de un usuario en un comentario
     __tablename__ = "likes"
     __table_args__ = (UniqueConstraint("user_id", "comment_id"),)
 
