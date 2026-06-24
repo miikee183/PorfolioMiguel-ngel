@@ -1,3 +1,52 @@
+// particulas de fondo animadas
+(function initParticles() {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'particles-canvas';
+    document.body.prepend(canvas);
+    const ctx = canvas.getContext('2d');
+    let w, h, particles;
+
+    function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+    }
+
+    function createParticles(count) {
+        particles = [];
+        for (let i = 0; i < count; i++) {
+            particles.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                vx: (Math.random() - 0.5) * 0.3,
+                vy: (Math.random() - 0.5) * 0.3,
+                r: Math.random() * 2 + 1,
+            });
+        }
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = '#00ff41';
+        for (const p of particles) {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0) p.x = w;
+            if (p.x > w) p.x = 0;
+            if (p.y < 0) p.y = h;
+            if (p.y > h) p.y = 0;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        requestAnimationFrame(draw);
+    }
+
+    resize();
+    createParticles(60);
+    draw();
+    window.addEventListener('resize', () => { resize(); createParticles(60); });
+})();
+
 // actualiza la posicion del cursor para el efecto de fondo
 document.addEventListener('mousemove', (e) => {
     const x = (e.clientX / window.innerWidth) * 100;
