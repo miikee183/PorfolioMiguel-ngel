@@ -1,4 +1,6 @@
-const API_BASE = "http://localhost:8000";
+const API_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "http://localhost:8000"
+    : "https://portfolio-feedback-api-t8q4.onrender.com";
 const GOOGLE_CLIENT_ID = "201681609523-3fc81n4vsdlqhtttd0ij83vgf038ghmb.apps.googleusercontent.com";
 
 let currentUser = null;
