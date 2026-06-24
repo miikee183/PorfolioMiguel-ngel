@@ -40,17 +40,6 @@ Portfolio personal con estilo terminal / hacker. Desarrollado con HTML, CSS y Ja
   - `POST /api/comments/{id}/like` — Toggle like (un like por usuario)
 - **Despliegue:** Render (free tier)
 
-## 🧩 Funcionalidades destacadas
-
-- Fondo dinámico que sigue el cursor (verde → pastel)
-- Scrollbar personalizada (#00ff41)
-- Barras de habilidades con animación bubbling
-- Ventana modal con línea de escaneo para certificados
-- Marquee de tecnologías en el footer
-- Comentarios con scroll interno (máx. 5 visibles)
-- Cooldown de 3s al publicar comentarios
-- Detección automática de entorno (localhost vs producción)
-
 ## 🚀 Despliegue
 
 - **Frontend:** GitHub Pages desde la rama `main` en la raíz del repositorio
