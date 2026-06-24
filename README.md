@@ -2,7 +2,7 @@
 
 > _Software Developer_
 
-Portfolio personal con temática hacker estilo terminal. Desarrollado con HTML, CSS y JavaScript vanilla.
+Portfolio personal con estilo terminal. Desarrollado con HTML, CSS y JavaScript.
 
 ## 🌐 Web
 
@@ -10,7 +10,7 @@ Portfolio personal con temática hacker estilo terminal. Desarrollado con HTML, 
 
 ## 📄 Secciones
 
-- **Perfil** — Hero con imagen, presentación, estudios, certificaciones, redes y descarga de CV
+- **Perfil** — Presentación, estudios, certificaciones, redes y descarga de CV
 - **Experiencia** — Prácticas en el IMN-CSIC (Instituto de Magnetismo Aplicado)
 - **Tecnologías** — Stack técnico con logos y barras de nivel
 - **Proyectos** — Side projects personales (Blood on the Clocktower WEB, Coliteus)
