@@ -12,7 +12,7 @@ Portfolio personal con estilo terminal / hacker. Desarrollado con HTML, CSS y Ja
 
 - **Perfil** — Presentación, estudios, certificaciones, redes y descarga de CV
 - **Experiencia** — Prácticas en el IMN-CSIC (Instituto de Magnetismo Aplicado)
-- **Tecnologías** — Stack técnico con logos y barras de nivel
+- **Habilidades** — Stack técnico con logos y barras de nivel
 - **Proyectos** — Side projects personales (Blood on the Clocktower WEB, Coliteus)
 - **Feedback** — Sistema de comentarios con Google Sign-In, likes y respuestas
 - **Aviso Legal** — Información sobre datos recogidos, finalidad, legitimación, destinatarios, conservación, derechos y cookies
