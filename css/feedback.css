@@ -44,6 +44,10 @@
     box-shadow: 0 0 10px #00ff41;
 }
 
+.fb-google-btn:hover svg path {
+    fill: #000 !important;
+}
+
 .fb-google-btn svg {
     flex-shrink: 0;
 }

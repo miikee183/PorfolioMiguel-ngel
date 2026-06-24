@@ -28,8 +28,14 @@ class CommentOut(BaseModel):
     author: UserOut
     parent_id: Optional[int] = None
     likes: int = 0
+    user_liked: bool = False
     created_at: datetime
     reply_count: int = 0
 
     class Config:
         from_attributes = True
+
+
+class LikeResponse(BaseModel):
+    liked: bool
+    likes: int

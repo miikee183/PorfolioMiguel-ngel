@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from backend.database import Base
@@ -14,6 +14,7 @@ class User(Base):
     picture = Column(String(500), nullable=True)
 
     comments = relationship("Comment", back_populates="author")
+    likes = relationship("Like", back_populates="user", cascade="all, delete-orphan")
 
 
 class Comment(Base):
@@ -27,4 +28,18 @@ class Comment(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
 
     author = relationship("User", back_populates="comments")
-    replies = relationship("Comment", backref="parent", remote_side=[id], lazy="dynamic")
+    parent = relationship("Comment", remote_side=[id], back_populates="replies")
+    replies = relationship("Comment", back_populates="parent")
+    like_entries = relationship("Like", back_populates="comment", cascade="all, delete-orphan")
+
+
+class Like(Base):
+    __tablename__ = "likes"
+    __table_args__ = (UniqueConstraint("user_id", "comment_id"),)
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    comment_id = Column(Integer, ForeignKey("comments.id"), nullable=False)
+
+    user = relationship("User", back_populates="likes")
+    comment = relationship("Comment", back_populates="like_entries")

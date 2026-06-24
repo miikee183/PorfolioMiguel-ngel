@@ -1,10 +1,42 @@
-const API_BASE = "https://portfolio-feedback-api-t8q4.onrender.com";
+const API_BASE = "http://localhost:8000";
 const GOOGLE_CLIENT_ID = "201681609523-3fc81n4vsdlqhtttd0ij83vgf038ghmb.apps.googleusercontent.com";
 
 let currentUser = null;
 let currentToken = null;
 
 function $(id) { return document.getElementById(id); }
+
+$("googleSignInBtn").addEventListener("click", () => {
+    if (typeof google === "undefined" || !google.accounts) {
+        alert("Google Sign-In no se ha cargado. Recarga la página.");
+        return;
+    }
+
+    const client = google.accounts.oauth2.initTokenClient({
+        client_id: GOOGLE_CLIENT_ID,
+        scope: "openid profile email",
+        callback: (response) => {
+            if (!response.access_token) return;
+            fetch(`${API_BASE}/api/auth/google`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id_token: response.access_token }),
+            })
+                .then((r) => { if (!r.ok) throw new Error("Auth falló"); return r.json(); })
+                .then((data) => {
+                    currentToken = data.token;
+                    currentUser = data.user;
+                    $("userAvatar").src = data.user.picture || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23333'/%3E%3Ctext x='6' y='17' fill='%2300ff41' font-size='12' font-family='monospace'%3E%3F%3C/text%3E%3C/svg%3E";
+                    $("userName").textContent = `[${data.user.name}]`;
+                    $("userInfo").style.display = "flex";
+                    $("googleSignInBtn").style.display = "none";
+                    $("commentForm").classList.add("show");
+                })
+                .catch((e) => alert("Error de autenticación: " + e.message));
+        },
+    });
+    client.requestAccessToken();
+});
 
 async function loadComments(sort) {
     const container = $("commentsContainer");
@@ -34,21 +66,23 @@ function renderComment(c, isReply = false) {
     div.className = `fb-comment${isReply ? " is-reply" : ""}`;
     div.dataset.id = c.id;
 
-    const d = new Date(c.created_at);
+    const d = new Date(c.created_at + "Z");
     const dateStr = d.toLocaleDateString("es-ES", {
         year: "numeric", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit"
     });
 
+    const avatarUrl = c.author.picture ? c.author.picture : "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23333'/%3E%3Ctext x='6' y='17' fill='%2300ff41' font-size='12' font-family='monospace'%3E%3F%3C/text%3E%3C/svg%3E";
+
     div.innerHTML = `
         <div class="fb-comment-head">
-            <img class="fb-comment-avatar" src="${c.author.picture || ''}" alt="" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2212%22 fill=%22%23333%22/><text x=%2212%22 y=%2216%22 fill=%22%2300ff41%22 font-size=%2210%22 font-family=%22monospace%22>?</text></svg>'">
+            <img class="fb-comment-avatar" src="${avatarUrl}" alt="" onerror="this.style.display='none'">
             <span class="fb-comment-author">${escHtml(c.author.name)}</span>
             <span class="fb-comment-date">${dateStr}</span>
         </div>
         <div class="fb-comment-text">${escHtml(c.content)}</div>
         <div class="fb-comment-actions">
-            <button class="fb-like-btn" onclick="toggleLike(${c.id}, this)">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#00ff41" stroke-width="2">
+            <button class="fb-like-btn${c.user_liked ? ' liked' : ''}" onclick="toggleLike(${c.id}, this)">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="${c.user_liked ? '#00ff41' : 'none'}" stroke="#00ff41" stroke-width="2">
                     <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
                 </svg>
                 <span class="fb-like-count">${c.likes}</span>
@@ -90,9 +124,9 @@ async function toggleLike(commentId, btn) {
         });
         if (!res.ok) throw new Error("Error");
         const data = await res.json();
-        btn.classList.add("liked");
+        btn.classList.toggle("liked", data.liked);
         btn.querySelector(".fb-like-count").textContent = data.likes;
-        btn.querySelector("svg").setAttribute("fill", "#00ff41");
+        btn.querySelector("svg").setAttribute("fill", data.liked ? "#00ff41" : "none");
     } catch (e) {
         alert("Error al dar like");
     }
@@ -176,7 +210,7 @@ function handleCredentialResponse(response) {
         .then((data) => {
             currentToken = data.token;
             currentUser = data.user;
-            $("userAvatar").src = data.user.picture || "";
+            $("userAvatar").src = data.user.picture || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23333'/%3E%3Ctext x='6' y='17' fill='%2300ff41' font-size='12' font-family='monospace'%3E%3F%3C/text%3E%3C/svg%3E";
             $("userName").textContent = `[${data.user.name}]`;
             $("userInfo").style.display = "flex";
             $("googleSignInBtn").style.display = "none";
@@ -185,22 +219,21 @@ function handleCredentialResponse(response) {
         .catch((e) => alert("Error de autenticación: " + e.message));
 }
 
-$("googleSignInBtn").addEventListener("click", () => {
-    google.accounts.id.initialize({
-        client_id: GOOGLE_CLIENT_ID,
-        callback: handleCredentialResponse,
-    });
-    google.accounts.id.prompt();
-});
+let cooldown = false;
 
 $("submitComment").addEventListener("click", async () => {
     if (!currentToken) {
         alert("Inicia sesión primero");
         return;
     }
+    if (cooldown) return;
     const textarea = $("newCommentText");
     const content = textarea.value.trim();
     if (!content) return;
+
+    cooldown = true;
+    $("submitComment").disabled = true;
+    $("submitComment").style.opacity = "0.5";
 
     try {
         const res = await fetch(`${API_BASE}/api/comments`, {
@@ -215,6 +248,12 @@ $("submitComment").addEventListener("click", async () => {
     } catch (e) {
         alert("Error al publicar comentario");
     }
+
+    setTimeout(() => {
+        cooldown = false;
+        $("submitComment").disabled = false;
+        $("submitComment").style.opacity = "1";
+    }, 3000);
 });
 
 $("cancelComment").addEventListener("click", () => {
