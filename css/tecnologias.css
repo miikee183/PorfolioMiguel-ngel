@@ -65,6 +65,13 @@
     height: 100%;
 }
 
+.tech-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%) invert(89%) sepia(88%) saturate(4404%) hue-rotate(81deg) brightness(101%) contrast(102%);
+}
+
 .tech-info {
     flex: 1;
 }
