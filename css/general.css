@@ -195,7 +195,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #00cc33;
+    background: #0099cc;
     box-shadow: 0 0 8px #00bfff;
 }
 
@@ -208,7 +208,7 @@ body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background: radial-gradient(600px at var(--mx, 50%) var(--my, 50%), rgba(0, 191, 255, 0.08), rgba(144, 238, 144, 0.04), transparent 70%);
+    background: radial-gradient(600px at var(--mx, 50%) var(--my, 50%), rgba(0, 191, 255, 0.08), rgba(0, 191, 255, 0.04), transparent 70%);
     pointer-events: none;
     z-index: -1;
 }

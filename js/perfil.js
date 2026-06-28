@@ -26,7 +26,7 @@
 
     function draw() {
         ctx.clearRect(0, 0, w, h);
-        ctx.fillStyle = '#00ff41';
+        ctx.fillStyle = '#00bfff';
         for (const p of particles) {
             p.x += p.vx;
             p.y += p.vy;
