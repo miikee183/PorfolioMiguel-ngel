@@ -4,27 +4,27 @@
 }
 
 .exp-hero .greeting {
-    color: #00ff41;
+    color: #00bfff;
     font-size: 1rem;
     margin-bottom: 5px;
 }
 
 .exp-hero h1 {
-    color: #00ff41;
+    color: #00bfff;
     font-size: 2.5rem;
     margin-bottom: 5px;
-    text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
 }
 
 .exp-hero .subtitle {
-    color: #00ff41;
+    color: #00bfff;
     font-size: 1.1rem;
     opacity: 0.8;
 }
 
 .exp-card {
     background: #0a0a0a;
-    border: 1px solid #00ff41;
+    border: 1px solid #00bfff;
     padding: 25px;
     margin-bottom: 35px;
     transition: box-shadow 0.3s ease;
@@ -32,7 +32,7 @@
 }
 
 .exp-card:hover {
-    box-shadow: 0 0 20px rgba(0, 255, 65, 0.15);
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.15);
 }
 
 .exp-header {
@@ -44,7 +44,7 @@
 }
 
 .exp-header-left h2 {
-    color: #00ff41;
+    color: #00bfff;
     font-size: 1.3rem;
     margin-bottom: 4px;
 }
@@ -56,15 +56,15 @@
 }
 
 .exp-date {
-    color: #00ff41;
+    color: #00bfff;
     font-size: 0.85rem;
-    border: 1px solid #00ff41;
+    border: 1px solid #00bfff;
     padding: 4px 12px;
     white-space: nowrap;
 }
 
 .exp-divider {
-    border-bottom: 1px solid #00ff41;
+    border-bottom: 1px solid #00bfff;
     margin: 18px 0;
     opacity: 0.3;
 }
@@ -90,7 +90,7 @@
 }
 
 .detail-label {
-    color: #00ff41;
+    color: #00bfff;
     font-weight: bold;
     min-width: 100px;
     flex-shrink: 0;
@@ -106,13 +106,13 @@
     gap: 8px;
     margin-top: 18px;
     padding-top: 15px;
-    border-top: 1px solid #00ff41;
-    border-top-color: rgba(0, 255, 65, 0.2);
+    border-top: 1px solid #00bfff;
+    border-top-color: rgba(0, 191, 255, 0.2);
 }
 
 .exp-tags span {
-    border: 1px solid #00ff41;
-    color: #00ff41;
+    border: 1px solid #00bfff;
+    color: #00bfff;
     padding: 3px 12px;
     font-size: 0.8rem;
     font-family: 'Courier New', Courier, monospace;
@@ -124,10 +124,10 @@
 }
 
 .section-title {
-    color: #00ff41;
+    color: #00bfff;
     font-size: 1.5rem;
     margin-bottom: 18px;
-    text-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
+    text-shadow: 0 0 8px rgba(0, 191, 255, 0.4);
 }
 
 .learn-grid {
@@ -140,7 +140,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    border: 1px solid #00ff41;
+    border: 1px solid #00bfff;
     padding: 12px 16px;
     background: #0a0a0a;
     color: #fff;
@@ -149,11 +149,11 @@
 }
 
 .learn-item:hover {
-    box-shadow: 0 0 10px rgba(0, 255, 65, 0.15);
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.15);
 }
 
 .learn-icon {
-    color: #00ff41;
+    color: #00bfff;
     font-weight: bold;
     font-size: 1.1rem;
 }

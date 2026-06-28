@@ -4,21 +4,21 @@
 }
 
 .proy-hero h1 {
-    color: #00ff41;
+    color: #00bfff;
     font-size: 2.5rem;
     margin-bottom: 5px;
-    text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
 }
 
 .proy-hero .subtitle {
-    color: #00ff41;
+    color: #00bfff;
     font-size: 1.1rem;
     opacity: 0.8;
 }
 
 .proy-card {
     background: #0a0a0a;
-    border: 1px solid #00ff41;
+    border: 1px solid #00bfff;
     padding: 25px;
     margin-bottom: 35px;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -26,7 +26,7 @@
 }
 
 .proy-card:hover {
-    box-shadow: 0 0 20px rgba(0, 255, 65, 0.15);
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.15);
     transform: scale(1.01);
 }
 
@@ -35,32 +35,32 @@
 }
 
 .proy-header h2 {
-    color: #00ff41;
+    color: #00bfff;
     font-size: 1.5rem;
     margin-bottom: 6px;
 }
 
 .proy-sub {
-    color: #00ff41;
+    color: #00bfff;
     font-size: 0.85rem;
     opacity: 0.7;
 }
 
 .proy-divider {
-    border-bottom: 1px solid #00ff41;
+    border-bottom: 1px solid #00bfff;
     margin: 18px 0;
     opacity: 0.3;
 }
 
 .proy-body h3 {
-    color: #00ff41;
+    color: #00bfff;
     font-size: 1.15rem;
     margin-bottom: 10px;
     margin-top: 20px;
 }
 
 .proy-num {
-    color: #00ff41;
+    color: #00bfff;
     opacity: 0.5;
     font-size: 1rem;
     margin-right: 8px;
@@ -74,7 +74,7 @@
 
 .proy-img-grid img {
     width: 32%;
-    border: 1px solid #00ff41;
+    border: 1px solid #00bfff;
 }
 
 .proy-body h3:first-child {
@@ -94,13 +94,13 @@
     gap: 8px;
     margin-top: 18px;
     padding-top: 15px;
-    border-top: 1px solid #00ff41;
-    border-top-color: rgba(0, 255, 65, 0.2);
+    border-top: 1px solid #00bfff;
+    border-top-color: rgba(0, 191, 255, 0.2);
 }
 
 .proy-tags span {
-    border: 1px solid #00ff41;
-    color: #00ff41;
+    border: 1px solid #00bfff;
+    color: #00bfff;
     padding: 3px 12px;
     font-size: 0.8rem;
     font-family: 'Courier New', Courier, monospace;
@@ -108,10 +108,10 @@
 
 .proy-code-block {
     background: #000;
-    border: 1px solid #00ff41;
+    border: 1px solid #00bfff;
     padding: 14px 18px;
     margin: 14px 0;
-    color: #00ff41;
+    color: #00bfff;
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.85rem;
     line-height: 1.7;
@@ -125,7 +125,7 @@
     font-style: italic;
     margin-top: 10px;
     padding: 10px 14px;
-    border-left: 2px solid #00ff41;
+    border-left: 2px solid #00bfff;
 }
 
 @keyframes fadeIn {
