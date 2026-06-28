@@ -187,4 +187,8 @@
         align-items: center;
         text-align: center;
     }
+
+    .badge-l1, .badge-l2 {
+        display: block;
+    }
 }
