@@ -144,9 +144,11 @@
 
     .proy-img-grid {
         flex-wrap: wrap;
+        justify-content: center;
     }
 
     .proy-img-grid img {
-        width: 100%;
+        width: 80%;
+        max-width: 300px;
     }
 }
